@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./QR.CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h2 class="company">
+            Gencode
+        </h2>
+    </header>
+    <hr>
+    
+    <div class="head">
+        <h1 class="title">Generate and Publish <span><br>Dynamic</span> QR Codes.</h1>
+    </div>
+    <div class="QR">
+        <div class="QR-box">
+            <p>Enter URL or Text</p>
+            <input type="text" placeholder="Text or URL" id="qrText">
+            <div id="qrImg">
+                <img src="" alt="" id="image">
+            </div>
+            <button class="tap" onclick="generateQR()">Generate QR <i class="fa-solid fa-qrcode"></i></button>
+            
+        </div>
+    </div>
+       
+    <script>
+        let qrImg = document.getElementById('qrImg');
+        let image = document.getElementById('image');
+        let qrText = document.getElementById('qrText');
+        function generateQR(){
+            if (qrText.value.length > 0){
+                image.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+ qrText.value;
+                qrImg.classList.add('showimg')
+            }else {
+                qrText.classList.add('error');
+                setTimeout(() =>{
+                    qrImg.classList.remove('showimg')
+                    qrText.classList.remove('error')
+                },1000);
+            }
+        }
+    </script>
+</body>
+</html>
